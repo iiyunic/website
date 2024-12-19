@@ -1,47 +1,62 @@
 <html>
-	<head>
-		<title>// iiYu //</title>
-  	<link rel='stylesheet' href='data/style.css' />
+  <head>
+    <Title>i i Y u . d e</title>
+    <script src='src/search.js'></script>
+  	<link rel='stylesheet' href='src/style.css' />
   	<meta http-equiv="Content-Type" content="charset=UTF-8" />
   	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
-	<link rel="shortcut icon" type="image/x-icon" href="data/favicon.ico">
-	</head>
-	
-	<body>
-		<div id="main">
-          <!-- PAGE AS A BACKGROUND + Video  -->
-	      <div id="mainback">
-	        <!-- <video autoplay muted loop id="bgvid"> -->
-		      <video autoplay loop id="bgvid">
-			  <source src="data/bg.mp4" type="video/mp4">
-            </video>
-	      </div>
-	      
-          <!-- KEZZI -->
-
-		
-		<div class="dbg">
-			<!-- <a class="logo" href="https://www.youtube.com/@iiYuMusic" target="_blank" style="position: absolute; left: 50%; top: 50%; margin-left: -240px; margin-top: -230px;">
-				 <img src="data/logo.png" width="512px" height="512px" > -->
-			<a class="logo" href="https://www.youtube.com/@iiYuMusic" target="_blank" style="position: absolute; left: 50%; top: 50%; margin-left: -514px; margin-top: -500px;">
-				<img src="data/3dlogo.gif" width="1024px" height="1024px">
-			</a>
-			<div class="darken"></div>
-		</div>
-		
-			
-		  <div id="cont">
-		    Are you looking for something?<br>
-			Good luck finding <a href="https://store14.gofile.io/download/direct/ad15f05d-e2ed-4229-bd15-78d719ac6f78/iiYu - Final Boss [110-128 BPM Version].mp3">it</a>!
+	<link rel="shortcut icon" type="image/x-icon" href="src/favicon.ico">
+  </head>
+  <body>
 
 
-			  <br><br><br><br><br><br>
-			  Discord: iiyu<br><br>
-			  
-		  </div>
-		  
-		  
-		</div>
-	</body>
 
+    <!-- MAIN AREA -->
+    <div id="main">
+	  
+      <!-- PAGE AS A BACKGROUND + Video -->
+	  <div id="mainback">
+	    <video autoplay muted loop id="bgvid">
+		  <source src="src/bg/bg.mp4" type="video/mp4">
+		  <source src="src/bg/bg.ogg" type="video/ogg">
+        </video>
+	  </div>
+
+	  <!-- Background Darker -->
+	  <div class="backgra1"></div>
+	  <div class="backgra2"></div>
+	  <div class="backgra3"></div>
+	  
+      <!-- KEZZI -->
+	  <img src="src/logo.png" width="512px" height="512px" style="position: absolute; left: 50%; top: 50%; margin-left: -220px; margin-top: -320px;">
+
+      <!-- SEARCHBAR -->
+	  <input id='search' placeholder="iiYu.de" type="text" autofocus="true" autocomplete="true" target="_blank"></input>
+
+      <!-- DROPDOWN -->
+	    <div class="sidebar"><a href="http://iiyu.duckdns.org:12142/" target="_blank"><button class="sidebtn">Jellyfin</button></a></div><br>
+	    <div class="sidebar"><a href="http://iiyu.duckdns.org:12145/" target="_blank"><button class="sidebtn">Speedtest</button></a></div><br>
+	    <div class="sidebar"><a href="http://omega:12145" target="_blank"><button class="sidebtn">Speedtest (LOCAL)</button></a></div><br>
+	  
+	  <div class="dropbar" style="position: relative;">
+	    <div class="dropdown">
+          <a href="" target="_blank"><button class="dropbtn">ENTERTAIN</button></a>
+          <div class="dropdown-content">
+		    <a href="https://www.youtube.com/" target="_blank">YouTube</a>
+		    <a href="http://iiyu.duckdns.org:12142/" target="_blank">Jellyfin</a>
+          </div>
+        </div>
+	    <div class="dropdown">
+          <a href="" target="_blank"><button class="dropbtn">TOOLS</button></a>
+          <div class="dropdown-content">
+		    <a href="http://omega:12150" target="_blank">YouTube DL</a>
+		    <a href="http://iiyu.duckdns.org:12145/" target="_blank">Speedtest</a>
+		    <a href="http://omega:12145" target="_blank">Speedtest (LOCAL)</a>
+          </div>
+        </div>
+	  </div>
+
+	  
+	</div>
+  </body>
 </html>
