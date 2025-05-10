@@ -138,7 +138,7 @@ input:focus ,textarea:focus {
 
 
 .xbtn {
-	background-color: rgba(255,255,255,64);
+	background-color: rgba(32,32,32,255);
     color: rgba(255,255,255,1);
 	font-family: Oswald, Calibri;
 	width: 200px;
@@ -151,7 +151,7 @@ input:focus ,textarea:focus {
 }
 
 .xbtn:hover {
-	background-color: rgba(255,255,255,32);
+	background-color: rgba(48,48,48,255);
 	color: #FFFFFF;
 	border-color: #FFFFFF;
 	text-align: center;
