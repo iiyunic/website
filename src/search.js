@@ -18,7 +18,7 @@ function search(query){
                 query = query.substr(3);
                 window.open("https://www.google.com/search?tbm=isch&q=" + query.replaceChars(" ", "+"),'_blank')
                 break;
-    }
+	    default:
     switch(query){
             case "ytdl": case "yt2mp3": case "mp3":
                 window.open("http://ytdl.iiyu.de/",'_blank')
@@ -42,6 +42,8 @@ function search(query){
         
             default:
             window.open("https://www.google.de/search?q=" + query.replaceChars(" ", "+"),'_blank')
+		    
+    }
     }
 }
  
