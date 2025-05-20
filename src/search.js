@@ -13,7 +13,36 @@ String.prototype.replaceChars = function(character, replacement){
 }
  
 function search(query){
-    window.open("https://www.google.de/search?q=" + query.replaceChars(" ", "+"),'_blank')
+    switch(query.substr(0, 2)){
+            case ">y":
+                query = query.substr(3);
+                window.open("https://www.google.com/search?tbm=isch&q=" + query.replaceChars(" ", "+"),'_blank')
+                break;
+    }
+    switch(query){
+            case "ytdl": case "yt2mp3": case "mp3":
+                window.open("http://ytdl.iiyu.de/",'_blank')
+                break;
+            
+            case "cloud": case "storage":
+                window.open("http://cloud.iiyu.de/",'_blank')
+                break;
+            
+            case "file": case "share":
+                window.open("http://share.iiyu.de/",'_blank')
+                break;
+            
+            case "speed": case "speedtest":
+                window.open("http://speed.iiyu.de/",'_blank')
+                break;
+            
+            case "stream": case "jellyfin":
+                window.open("http://stream.iiyu.de/",'_blank')
+                break;
+        
+            default:
+            window.open("https://www.google.de/search?q=" + query.replaceChars(" ", "+"),'_blank')
+    }
 }
  
 window.onload = function(){
@@ -31,3 +60,9 @@ window.onload = function(){
     var search_sqr = document.getElementById("search_sqr");
  
         }
+
+
+		<a href="http://cloud.iiyu.de" target="_blank"><button class="xbtn">CLOUD</button></a><br>
+		<a href="http://share.iiyu.de" target="_blank"><button class="xbtn">Y-Share</button></a><br>
+		<a href="http://speed.iiyu.de" target="_blank"><button class="xbtn">Speedtest</button></a><br>
+		<a href="http://stream.iiyu.de" target="_blank"><button class="xbtn">Media</button></a><br>
