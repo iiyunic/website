@@ -1,0 +1,377 @@
+html {
+	font-family: Quicksand, Calibri;
+	color: #FBF8EF;
+	background-color: rgba(0,0,0,0);
+}
+::-webkit-input-placeholder { /* Chrome */
+  color: #888888;
+  text-align: center;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #888888;
+  text-align: center;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #888888;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: #888888;
+  text-align: center;
+  opacity: 1;
+}
+
+/* Zitat */
+#SelfPush {
+	color: #FFFFFF;
+	font-family: 'Indie Flower', Calibri;
+	font-size: 24px;
+	text-align: center;
+	position: fixed;
+	top: 50%;
+	margin-top: -285px;
+	width: 100%;
+	height: 64px;
+	text-shadow:
+	1px 1px 2px #000000,
+	2px 2px 2px #000000;
+}
+
+/* Hauptbereich */
+#main {
+	background-color: rgba(0,0,0,0.5); /* Dimmer für Fenster */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -470px;
+	margin-top: -250px;
+	width: 940px;
+	height: 501px;
+}
+
+/* Background */
+#mainback {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	color: rgba(255,255,255,0.5);
+	font-size: 14px;
+	background: url('../bg.jpg');
+	background-position: center;
+	background-size: cover;
+	background-transparent
+	background-attachment: fixed;
+	-webkit-filter: brightness(0.9) saturate(1.4) contrast(1.4);
+	-moz-filter: brightness(0.9) saturate(1.4) contrast(1.4);
+	-o-filter: brightness(0.9) saturate(1.4) contrast(1.4);
+	-ms-filter: brightness(0.9) saturate(1.4) contrast(1.4);
+}
+
+/* SEARCHBAR */
+#search {
+	position: absolute;
+	top: 0px;
+	left: 270px;
+	font-family: Quicksand, Calibri;
+}
+input {
+	width: 400px;
+	height: 24px;
+	font-size: 20px;
+	color: #888888;
+	text-align: center;
+	font-family: Arial;
+	padding-left: 7px;
+	background-color: rgba(0,0,0,0);
+	border: 0px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+    transition: all 0.3s ease;
+}
+input:hover ,textarea:hover {
+	Background: rgba(255,138,0,0.20);
+    transition: all 0.3s ease;
+}
+input:focus ,textarea:focus {
+	width: 720px;
+	margin-left: -160px;
+	Background: rgba(50,50,50,0.80);
+	color: #EEEEEE;
+	border: 0px;
+    outline: 0;
+    transition: all 0.3s ease;
+}
+
+/* Topbar */
+#TopBar {
+	Background: rgba(0,0,0,0.80);
+	width: 940px;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	box-shadow:
+	1px -1px 0px black,
+	1px 1px 0px black,
+	-1px -1px 0px black,
+	-1px 1px 0px black;
+}
+#DotArea {
+	width: 68px;
+	height: 16px;
+	position: absolute;
+	top: 6px;
+	Right: 7px;
+}
+.dot {
+	Background: rgba(255,255,255,0.85);
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	border: 0px;
+	top: 0px;
+	transition: ease 0.1s;
+}
+.dot:hover {
+	cursor: pointer;
+	-webkit-filter: brightness(1.2) saturate(1.7) contrast(1.2);
+	-moz-filter: brightness(1.2) saturate(1.7) contrast(1.2);
+	-o-filter: brightness(1.2) saturate(1.7) contrast(1.2);
+	-ms-filter: brightness(1.2) saturate(1.7) contrast(1.2);
+	box-shadow: 0px 0px 5px white;
+	transition: ease 0.1s;
+}
+.dot:focus {
+	border: 0px;
+    outline: 0;
+}
+
+/* Leftbar */
+#LeftBar {
+	Background: rgba(25,25,25,0.80);
+	width: 200px;
+	height: 421px;
+	position: absolute;
+	top: 29px;
+	left: 0px;
+	box-shadow:
+	-1px -1px 0px black,
+	0px 1px 0px black,
+	-1px 1px 0px black;
+}
+.line {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 200px;
+	height: 30px;
+	background-color: rgba(0,0,0,0);
+	border: 0px;
+	cursor: pointer;
+	transition: ease 0.3s;
+	box-shadow: 0px -1px 0px rgba(0,0,0,0.15);
+}
+.line:hover {
+	Background: rgba(255,138,0,0.20);
+	transition: ease 0.3s;
+}
+.line:active {
+	Background: rgba(255,138,0,0.60);
+	-webkit-filter: brightness(1) saturate(2) contrast(1.4);
+	-moz-filter: brightness(1) saturate(2) contrast(1.4);
+	-o-filter: brightness(1) saturate(2) contrast(1.4);
+	-ms-filter: brightness(1) saturate(2) contrast(1.4);
+	transition: ease 0.025s;
+}
+.line:focus {
+	border: 0px;
+    outline: 0;
+}
+.linetext {
+	position: absolute;
+	top: 4px;
+	left: 8px;
+	height: 31px;
+	width: 155px;
+	font-family: Quicksand, Calibri;
+	font-size: 20px;
+	text-align: left;
+	color: #f0f0f0;
+}
+
+/* Great */
+#MainArea {
+	Background: rgba(0,0,0,0.5);
+	width: 740;
+	height: 421px;
+	position: absolute;
+	top: 29px;
+	left: 200px;
+	box-shadow:
+	-1px 1px 0px black,
+	0px 1px 0px black,
+	1px 0px 0px black,
+	-1px 0px 0px black,
+	1px 1px 0px black;
+}
+.framolo {
+	border: 0px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+/* Bottom Animation */
+#Animation {
+	height: 50px;
+	width: 940px;
+	position: absolute;
+	top: 451px;
+	left: 0px;
+	box-shadow:
+	-1px 1px 0px black,
+	0px 1px 0px black,
+	1px 0px 0px black,
+	-1px 0px 0px black,
+	1px 1px 0px black;
+}
+#musicframe {
+	width: 940px;
+	height: 50px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border: 0px;
+	transition: ease 1s;
+	box-shadow:
+	0px 1px 0px black,
+	1px 0px 0px black,
+	-1px 0px 0px black,
+	0px -1px 0px black,
+	1px 1px 0px black,
+	1px -1px 0px black,
+	-1px 1px 0px black,
+	-1px -1px 0px black;
+}
+#musicframe:hover {
+	width: 940px;
+	height: 150px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border: 0px;
+	transition: ease 0.2s;
+}
+
+/* 4chan */
+.chanbox {
+	position: absolute;
+	width: 710px;
+	height: 381px;
+	top: 30px;
+}
+.column {
+	float: left;
+	width: 140px;
+	text-align: center;
+}
+.chanlink:link {
+	color: #EEEEEE;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 1000;
+	font-family: Quicksand, Calibri;
+	transition: ease 0.3s;
+}
+.chanlink:visited {
+	color: #EEEEEE;
+	text-decoration: none;
+	font-size: 14px;
+	transition: ease 0.3s;
+}
+.chanlink:hover {
+	color: rgba(255,255,255,1);
+	text-decoration: none;
+	font-size: 15px;
+	transition: ease 0.1s;
+}
+.chanlink:active {
+	color: rgba(128,128,128,1);
+	text-decoration: none;
+	font-size: 15px;
+	transition: ease 0.3s;
+}
+cat {
+	color: #888888;
+	font-size: 18;
+	font-weight: 1000;
+	text-decoration: none;
+}
+
+/* Main Page */
+.abox {
+	position: absolute;
+	width: 730px;
+	height: 411px;
+	top: 10px;
+}
+.acolumn {
+	float: left;
+	width: 180px;
+	text-align: center;
+}
+.aLink {
+	margin-left: 15px;
+	padding: 0px;
+	top: 0px;
+	left: 0px;
+	font-family: Quicksand, Calibri;
+	color: #000000;
+	font-size: 14px;
+	transition: ease 0.1s;
+	text-decoration: none;
+}
+.aLink:hover {
+	color: #404040;
+	font-size: 15px;
+	transition: ease 0.1s;
+}
+.aLink:visited {
+	color: #000000;
+	font-size: 14px;
+	transition: ease 0.1s;
+}
+.aLink:active {
+	color: #808080;
+	font-size: 15px;
+	transition: ease 0.1s;
+}
+
+.PicLink {
+	margin-bottom: 5px;
+	transition: ease 0.3s;
+	-webkit-filter: brightness(1) saturate(0.75) contrast(1.4);
+	-moz-filter: brightness(1) saturate(0.75) contrast(1.4);
+	-o-filter: brightness(1) saturate(0.75) contrast(1.4);
+	-ms-filter: brightness(1) saturate(0.75) contrast(1.4);
+}
+.PicLink:hover {
+	transition: ease 0.3s;
+	-webkit-filter: brightness(1) saturate(2) contrast(1.4);
+	-moz-filter: brightness(1) saturate(2) contrast(1.4);
+	-o-filter: brightness(1) saturate(2) contrast(1.4);
+	-ms-filter: brightness(1) saturate(2) contrast(1.4);
+}
+.PicLink:active {
+	transition: ease 0.05s;
+	-webkit-filter: brightness(1) saturate(2) contrast(1.4) blur(2px);
+	-moz-filter: brightness(1) saturate(2) contrast(1.4) blur(2px);
+	-o-filter: brightness(1) saturate(2) contrast(1.4) blur(2px);
+	-ms-filter: brightness(1) saturate(2) contrast(1.4) blur(2px);
+}
