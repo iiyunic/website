@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="data/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i i Y u . d e</title>
+    <meta name="description" content="Portfolio von iiYu - Musik, Fotografie, Technik">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Roboto:wght@100;300;500;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'iiyu-black': '#0a0a0a',
+                        'iiyu-red': '#ef4444',
+                        'iiyu-red-dim': 'rgba(239, 68, 68, 0.1)',
+                        'iiyu-gray': '#e0e0e0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        title: ['Roboto', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "radial-gradient(rgba(239, 68, 68, 0.15) 1px, transparent 1px)",
+                    },
+                    // Keyframes für Tailwind-Klassen
+                    keyframes: {
+                        pulseSlow: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.4', borderColor: 'rgba(239,68,68,0.2)' },
+                            '50%': { transform: 'scale(1.05)', opacity: '0.8', borderColor: 'rgba(239,68,68,0.6)' }
+                        },
+                        textGlowAsync: {
+                            '0%, 100%': { textShadow: '0 0 10px #ef4444, 0 0 20px rgba(239, 68, 68, 0.2)' },
+                            '33%': { textShadow: '0 0 15px #ef4444, 0 0 30px rgba(239, 68, 68, 0.6), 0 0 60px rgba(239, 68, 68, 0.4)' },
+                            '66%': { textShadow: '0 0 5px #ef4444, 0 0 10px rgba(239, 68, 68, 0.3)' }
+                        },
+                        // Icon Animations
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        spinSlow: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        },
+                        iconPulse: {
+                            '0%, 100%': { opacity: '0.8', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.1)' }
+                        }
+                    },
+                    animation: {
+                        pulseSlow: 'pulseSlow 5s ease-in-out infinite',
+                        textGlow: 'textGlowAsync 3s ease-in-out infinite',
+                        float: 'float 6s ease-in-out infinite',
+                        spinSlow: 'spinSlow 30s linear infinite',
+                        iconPulse: 'iconPulse 4s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            background-image: radial-gradient(rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+        }
+
+        .iiyu-logo-glow {
+            text-shadow: 
+                0 0 10px #ef4444,
+                0 0 20px #ef4444,
+                0 0 40px #ef4444,
+                0 0 80px rgba(239, 68, 68, 0.5);
+        }
+        
+        .glow-box {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-box:hover {
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.25);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
+        }
+
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .visualizer-bar {
+            animation-play-state: paused;
+        }
+        .is-playing .visualizer-bar {
+            animation-play-state: running;
+        }
+
+        /* Braille Spinner Animation */
+        .braille-spinner::after {
+            content: "⠋";
+            display: inline-block;
+            animation: braille-spin 1s linear infinite;
+            margin-left: 0.5rem;
+            color: #ef4444;
+        }
+        @keyframes braille-spin {
+            0% { content: "⠋"; }
+            10% { content: "⠙"; }
+            20% { content: "⠹"; }
+            30% { content: "⠸"; }
+            40% { content: "⠼"; }
+            50% { content: "⠴"; }
+            60% { content: "⠦"; }
+            70% { content: "⠧"; }
+            80% { content: "⠇"; }
+            90% { content: "⠏"; }
+        }
+
+        /* --- NEUE ANIMATION FÜR "I EVOLVE" --- */
+        @keyframes fiery-shine {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        .text-shimmer-fiery {
+            /* Harter Gradient für maximalen Kontrast */
+            background: linear-gradient(
+                120deg, 
+                #ef4444 30%, 
+                #fbbf24 50%, 
+                #ef4444 70%
+            );
+            background-size: 200% auto;
+            
+            /* Text-Clipping Standard */
+            color: #ef4444; /* Fallback */
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Animation */
+            animation: fiery-shine 3s linear infinite;
+            display: inline-block;
+        }
+
+        /* --- GLITCH / SCAN SLIDESHOW ANIMATION --- */
+        
+        .slideshow-img {
+            opacity: 0;
+            z-index: 0;
+            /* Standard: versteckt */
+        }
+
+        .slideshow-img.active {
+            opacity: 1;
+            z-index: 20;
+            /* Schneller, aggressiver (0.6s) und linear für Chaos */
+            animation: cyber-glitch-wild 0.6s linear both;
+        }
+
+        /* Hält das vorherige Bild sichtbar, während das neue scannt */
+        .slideshow-img.prev {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        @keyframes cyber-glitch-wild {
+            0% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+                filter: none;
+                opacity: 1;
+            }
+            5% {
+                clip-path: inset(10% 0 85% 0); /* Horizontal Slice oben */
+                transform: translate(-10px, 5px) skew(5deg);
+                filter: hue-rotate(90deg) contrast(200%);
+            }
+            10% {
+                clip-path: inset(75% 0 5% 0); /* Horizontal Slice unten */
+                transform: translate(10px, -5px) skew(-5deg);
+                filter: hue-rotate(180deg) invert(20%);
+            }
+            15% {
+                clip-path: inset(20% 0 50% 0); /* Dicker Slice Mitte */
+                transform: translate(-5px, 0);
+                filter: sepia(100%) saturate(300%);
+                opacity: 0.8; /* Leichtes Flackern */
+            }
+            20% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+                filter: none;
+                opacity: 1;
+            }
+            25% {
+                clip-path: inset(60% 0 10% 0);
+                transform: translate(15px, 5px) skew(20deg); /* Starker Skew */
+                filter: invert(100%);
+            }
+            30% {
+                clip-path: inset(10% 0 60% 0);
+                transform: translate(-10px, -5px) skew(-10deg);
+                filter: hue-rotate(270deg);
+            }
+            35% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+                filter: blur(3px) contrast(150%);
+            }
+            40% {
+                /* Jalousie-Effekt / Streifen */
+                clip-path: polygon(0 0, 100% 0, 100% 10%, 0 20%, 0 40%, 100% 30%, 100% 60%, 0 70%, 0 90%, 100% 80%, 100% 100%, 0 100%);
+                transform: scale(1.1) translate(-5px, 0);
+                filter: contrast(300%) saturate(0); /* Schwarz/Weiß hart */
+            }
+            45% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+                filter: none;
+            }
+            50% {
+                clip-path: inset(30% 0 30% 0);
+                transform: translate(-20px, 0);
+                filter: grayscale(100%) brightness(50%);
+            }
+            55% {
+                clip-path: inset(0 50% 0 0); /* Rechte Hälfte weg */
+                transform: translate(20px, 0);
+                opacity: 0.5;
+            }
+            60% {
+                clip-path: inset(0 0 0 0);
+                opacity: 0.1; /* Fast weg (Blackout) */
+            }
+            65% {
+                opacity: 1;
+                transform: scale(1.05) rotate(2deg);
+                filter: hue-rotate(45deg);
+            }
+            75% {
+                clip-path: inset(0 0 80% 0); /* Nur oben sichtbar */
+                transform: translate(0, -10px);
+                filter: hue-rotate(-90deg) brightness(200%);
+            }
+            85% {
+                clip-path: inset(80% 0 0 0); /* Nur unten sichtbar */
+                transform: translate(0, 10px);
+            }
+            90% {
+                clip-path: inset(40% 0 40% 0);
+                transform: translate(5px, 5px);
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0, 0);
+                filter: none;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-iiyu-red selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-title font-thin text-2xl tracking-widest hover:text-iiyu-red transition-colors glow-text">iiYu</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-iiyu-red px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#music" class="hover:text-iiyu-red px-3 py-2 rounded-md text-sm font-medium transition-colors">Musik</a>
+                        <a href="#photography" class="hover:text-iiyu-red px-3 py-2 rounded-md text-sm font-medium transition-colors">Fotografie</a>
+                        <a href="#tech" class="hover:text-iiyu-red px-3 py-2 rounded-md text-sm font-medium transition-colors">Projekte</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#contact" class="border border-iiyu-red text-iiyu-red hover:bg-iiyu-red hover:text-white px-4 py-1.5 rounded text-sm font-medium transition-all duration-300">Kontakt</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden glass-panel border-b border-white/10" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="text-gray-300 hover:text-iiyu-red block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#music" class="text-gray-300 hover:text-iiyu-red block px-3 py-2 rounded-md text-base font-medium">Musik</a>
+                <a href="#photography" class="text-gray-300 hover:text-iiyu-red block px-3 py-2 rounded-md text-base font-medium">Fotografie</a>
+                <a href="#tech" class="text-gray-300 hover:text-iiyu-red block px-3 py-2 rounded-md text-base font-medium">Projekte</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.1)_0%,transparent_70%)] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1">
+                <p class="text-iiyu-red font-mono mb-4 tracking-widest text-sm braille-spinner">SYSTEM.STATUS: ONLINE</p>
+                <h1 class="text-6xl md:text-8xl font-title font-thin tracking-tighter mb-6">
+                    I watch.<br>
+                    I learn.<br>
+                    <span class="text-shimmer-fiery font-thin pb-2">I evolve.</span>
+                </h1>
+                <p class="text-xl text-gray-400 max-w-lg mb-8 font-light leading-relaxed">
+                    Eine Dokumentation meiner Reise durch verschiedene Interessen.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#tech" class="group flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-3 rounded-full transition-all">
+                        <i data-lucide="cpu" class="w-5 h-5 text-iiyu-red group-hover:scale-110 transition-transform"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a href="#music" class="group flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-3 rounded-full transition-all">
+                        <i data-lucide="headphones" class="w-5 h-5 text-iiyu-red group-hover:scale-110 transition-transform"></i>
+                        <span>Audio</span>
+                    </a>
+                    <a href="#photography" class="group flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-3 rounded-full transition-all">
+                        <i data-lucide="camera" class="w-5 h-5 text-iiyu-red group-hover:scale-110 transition-transform"></i>
+                        <span>Visuals</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="order-1 lg:order-2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-96 md:h-96">
+                    <!-- Placeholder for Logo/Avatar Background elements -->
+                    <div class="absolute inset-0 border border-iiyu-red/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                    <div class="absolute inset-4 border border-white/5 rounded-full animate-[spin_25s_linear_infinite_reverse]"></div>
+                    
+                    <!-- Main pulsating container -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <!-- Langsam pochender Kreis -->
+                        <div class="absolute inset-0 rounded-full border-4 border-iiyu-red/20 shadow-[0_0_50px_rgba(239,68,68,0.2)] animate-pulseSlow"></div>
+                        
+                        <!-- Unabhängige innere Ringe (Tech-Look) -->
+                        <div class="absolute inset-3 rounded-full border border-iiyu-red/10 border-t-iiyu-red/40 animate-[spin_8s_linear_infinite]"></div>
+                        <div class="absolute inset-8 rounded-full border border-iiyu-red/10 border-b-iiyu-red/40 animate-[spin_12s_linear_infinite_reverse]"></div>
+
+                        <!-- Das iiYu Logo (Strahlt unabhängig) -->
+                        <span class="relative z-10 text-7xl font-title font-thin tracking-widest text-iiyu-red animate-textGlow">iiYu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-gray-600"></i>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music" class="py-24 bg-black/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-end justify-between mb-16 border-b border-white/10 pb-4">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-title font-thin">Musik</h2>
+                    <p class="text-iiyu-red font-mono text-sm mt-2">AUDIO // PRODUCTION // SOUNDSCAPES</p>
+                </div>
+                <!-- UPDATED ICON: Rot, leuchtend, schwebend -->
+                <i data-lucide="music-4" class="w-24 h-24 text-white drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] animate-float"></i>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Featured Track -->
+                <div class="col-span-1 md:col-span-2 glow-box border border-white/10 rounded-xl p-8 bg-gradient-to-br from-white/5 to-transparent relative overflow-hidden">
+                    <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-40 h-40 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 shadow-2xl shadow-iiyu-red/20 cursor-pointer hover:bg-gray-700 transition-colors" onclick="toggleAudio()">
+                            <i id="play-icon" data-lucide="play-circle" class="w-16 h-16 text-iiyu-red/80"></i>
+                        </div>
+                        <div class="flex-grow w-full">
+                            <h3 class="text-2xl font-bold mb-2">Etwas Musik</h3>
+                            <p id="track-title" class="text-gray-400 mb-6 font-mono text-sm">Brutalismus3000 - 9MM (iiYu SSP Edit)</p>
+                            
+                            <!-- Audio Element (Initial Track) -->
+                            <audio id="audio-player" src="audio/audio0.mp3" preload="metadata"></audio>
+
+                            <!-- Audio Player Visualization -->
+                            <div id="visualizer" class="flex items-center gap-1 h-12 mb-6">
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-4 animate-[pulse_1s_ease-in-out_infinite]"></div>
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-8 animate-[pulse_1.2s_ease-in-out_infinite]"></div>
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-6 animate-[pulse_0.8s_ease-in-out_infinite]"></div>
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-10 animate-[pulse_1.5s_ease-in-out_infinite]"></div>
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-5 animate-[pulse_1.1s_ease-in-out_infinite]"></div>
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-3 animate-[pulse_0.9s_ease-in-out_infinite]"></div>
+                                <div class="visualizer-bar w-1 bg-iiyu-red h-7 animate-[pulse_1.3s_ease-in-out_infinite]"></div>
+                                
+                                <!-- Progress Bar Simulation -->
+                                <div class="w-1 bg-iiyu-red/50 h-10 flex-grow mx-2 rounded relative cursor-pointer" id="progress-container">
+                                    <div id="progress-bar" class="absolute top-1/2 left-0 h-0.5 bg-white/50 w-0 transition-all duration-100 -translate-y-1/2"></div>
+                                    <div id="progress-dot" class="absolute top-1/2 left-0 w-2 h-12 bg-white rounded-full -translate-y-1/2 -translate-x-1/2 shadow-[0_0_10px_white] transition-all duration-100"></div>
+                                </div>
+                                <span id="time-display" class="font-mono text-xs text-iiyu-red">00:00 / 00:00</span>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-4 items-center">
+                                <button id="play-btn" onclick="toggleAudio()" class="px-6 py-2 bg-iiyu-red text-white rounded hover:bg-red-600 transition text-sm font-bold tracking-wider w-24 text-center">PLAY</button>
+                                
+                                <!-- Track Switchers -->
+                                <div class="flex gap-2">
+                                    <button onclick="changeTrack('audio/audio0.mp3', 'Brutalismus3000 - 9MM (iiYu SSP Edit)')" class="px-4 py-2 border border-iiyu-red/50 text-iiyu-red rounded hover:bg-iiyu-red/10 transition text-xs font-mono flex items-center gap-2">
+                                        <i data-lucide="music" class="w-3 h-3"></i> 1
+                                    </button>
+                                    <button onclick="changeTrack('audio/audio1.mp3', 'ATB - Killing me Inside (iiYu Remix)')" class="px-4 py-2 border border-white/20 rounded hover:bg-white/5 transition text-xs font-mono flex items-center gap-2">
+                                        <i data-lucide="skip-forward" class="w-3 h-3"></i> 2
+                                    </button>
+                                    <button onclick="changeTrack('audio/audio2.mp3', 'iiYu - Sparkle')" class="px-4 py-2 border border-white/20 rounded hover:bg-white/5 transition text-xs font-mono flex items-center gap-2">
+                                        <i data-lucide="skip-forward" class="w-3 h-3"></i> 3
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playlist / YouTube Links -->
+                <a href="https://www.youtube.com/@iiYuMusic" target="_blank" class="group border border-white/5 p-4 rounded-lg hover:border-iiyu-red/50 transition-colors cursor-pointer bg-white/[0.02]">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-lg group-hover:text-iiyu-red transition-colors">iiYu Music</h4>
+                            <p class="text-xs text-gray-500 mt-1 font-mono">YouTube Channel</p>
+                        </div>
+                        <i data-lucide="youtube" class="w-5 h-5 text-gray-600 group-hover:text-red-500"></i>
+                    </div>
+                </a>
+                
+                <a href="https://www.youtube.com/playlist?list=PLyRBd_BspeqgclzKXzm2m6qDqpbE4k65H" target="_blank" class="group border border-white/5 p-4 rounded-lg hover:border-iiyu-red/50 transition-colors cursor-pointer bg-white/[0.02]">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-lg group-hover:text-iiyu-red transition-colors">Bass Bilbo</h4>
+                            <p class="text-xs text-gray-500 mt-1 font-mono">YouTube Playlist</p>
+                        </div>
+                        <i data-lucide="youtube" class="w-5 h-5 text-gray-600 group-hover:text-red-500"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photography Section -->
+    <section id="photography" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-end justify-between mb-8 border-b border-white/10 pb-4">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-title font-thin">Fotografie</h2>
+                    <p class="text-iiyu-red font-mono text-sm mt-2">FOCUS // SNAP // DEVELOP</p>
+                </div>
+                <!-- UPDATED ICON: Rot, leuchtend, drehend -->
+                <i data-lucide="aperture" class="w-24 h-24 text-white drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] animate-spinSlow"></i>
+            </div>
+
+            <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                <p class="text-gray-400 max-w-xl font-light">
+                    Die Kunst Momente & Konzepte in Bildform zu verewigen.
+                </p>
+                <button onclick="openGallery()" class="group flex items-center gap-2 bg-iiyu-red/10 text-iiyu-red border border-iiyu-red/50 px-6 py-3 rounded-full hover:bg-iiyu-red hover:text-white transition-all duration-300">
+                    <i data-lucide="grid" class="w-4 h-4"></i>
+                    <span>Galerie öffnen</span>
+                </button>
+            </div>
+
+            <!-- Slideshow Container (Updated) -->
+            <div id="photography-preview-grid" class="relative w-full h-[600px] rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+                <!-- Images inserted by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen Gallery Modal -->
+    <div id="gallery-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+        <div class="min-h-screen px-4 py-8 md:p-12 relative">
+            
+            <button onclick="closeGallery()" class="fixed top-6 right-6 z-[110] text-white/50 hover:text-iiyu-red transition-colors bg-black/50 p-2 rounded-full border border-white/10 hover:border-iiyu-red">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+
+            <div class="max-w-7xl mx-auto mb-12 pt-8">
+                <h2 class="text-4xl font-title font-thin mb-2">Visueller <span class="text-iiyu-red">Genuss</span></h2>
+                <p class="text-gray-500 font-mono text-xs">COLLECTION_ID: 5024_A // STATUS: PUBLIC</p>
+            </div>
+
+            <!-- Gallery Grid (Dynamic via JS) -->
+            <div id="gallery-grid" class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+                <!-- Images inserted by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox (Updated with Nav & Zoom) -->
+    <div id="lightbox" class="fixed inset-0 z-[120] bg-black hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <!-- Close Button -->
+        <button onclick="closeZoom()" class="absolute top-4 right-4 z-[130] text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-colors">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+
+        <!-- Nav Buttons -->
+        <button onclick="prevLightboxImage()" class="absolute left-4 z-[130] text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-colors hidden md:block group">
+            <i data-lucide="chevron-left" class="w-10 h-10 group-hover:-translate-x-1 transition-transform"></i>
+        </button>
+        <button onclick="nextLightboxImage()" class="absolute right-4 z-[130] text-white/50 hover:text-white hover:bg-white/10 p-2 rounded-full transition-colors hidden md:block group">
+            <i data-lucide="chevron-right" class="w-10 h-10 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+
+        <!-- Image Container for Zoom -->
+        <div class="w-full h-full flex items-center justify-center overflow-hidden">
+             <img id="lightbox-img" src="" 
+                  class="max-w-[95vw] max-h-[95vh] object-contain transition-transform duration-200 ease-out origin-center cursor-zoom-in"
+                  onclick="toggleZoom(event)"
+                  onmousemove="panImage(event)">
+        </div>
+    </div>
+
+    <!-- Tech / Terminal Section -->
+    <section id="tech" class="py-24 bg-black/50 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-end justify-between mb-16 border-b border-white/10 pb-4">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-title font-thin">Projekte</h2>
+                    <p class="text-iiyu-red font-mono text-sm mt-2">HARDWARE // NETWORKING // ANALYSIS</p>
+                </div>
+                <!-- UPDATED ICON: Rot, leuchtend, pulsierend -->
+                <i data-lucide="terminal" class="w-24 h-24 text-white drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] animate-iconPulse"></i>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Terminal Window -->
+                <div class="lg:col-span-2 font-mono text-sm bg-[#0c0c0c] border border-white/10 rounded-lg overflow-hidden shadow-2xl">
+                    <div class="bg-white/5 px-4 py-2 flex items-center gap-2 border-b border-white/5">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="ml-4 text-xs text-gray-500">user@iiYu-server:~</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <span class="text-green-500">➜</span> <span class="text-blue-400">~</span> <span class="text-gray-300">neofetch</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="text-iiyu-red hidden md:block">
+<pre>
+    ⠠⣤⡀     ⣤⡄⡀
+     ⠙⣿⡀  ⣾⠟
+      ⠘⣿⡀⣾⠋
+       ⠈⣿⠃
+        ⣿
+        ⣿
+		⠈
+</pre>
+                            </div>
+                            <div class="text-gray-400 space-y-1">
+                                <p><span class="text-iiyu-red">OS:</span> Y-os 1.2</p>
+                                <p><span class="text-iiyu-red">Kernel:</span> 2.15.0-c</p>
+                                <p><span class="text-iiyu-red">Uptime:</span> 99.9%</p>
+                                <p><span class="text-iiyu-red">GPU:</span> Too Many</p>
+                                <p><span class="text-iiyu-red">CPU:</span> Even More</p>
+                                <p><span class="text-iiyu-red">Memory:</span> i have even that</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="text-green-500">➜</span> <span class="text-blue-400">~</span> <span class="text-gray-300">cat skills.txt</span><br>
+                            <span class="text-gray-400 block mt-2">
+                                [C#, Python and lots of trial & error]<br>
+                                [Data Analysis, Modding & Fun]<br>
+                                [Video, Photo & Audio Editing]<br>
+                                [Hardware & Custom Builds]
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-green-500">➜</span> <span class="text-blue-400">~</span> <span class="typing-cursor text-gray-300">initiate_analysis.sh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Stack (Bento Style) -->
+                <div class="flex flex-col gap-4">
+                    <a href="https://stream.iiyu.de/" target="_blank" class="flex-1 bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-iiyu-red/10 hover:border-iiyu-red/50 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <i data-lucide="tv" class="text-gray-400 group-hover:text-iiyu-red transition-colors"></i>
+                            <span class="text-xs font-mono bg-white/10 px-2 py-1 rounded text-green-400">ONLINE</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">iiYu[stream]</h3>
+                        <p class="text-sm text-gray-500">Private Streaming Service</p>
+                    </a>
+
+                    <a href="https://speed.iiyu.de/" target="_blank" class="flex-1 bg-white/5 border border-white/10 rounded-lg p-6 hover:bg-iiyu-red/10 hover:border-iiyu-red/50 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <i data-lucide="activity" class="text-gray-400 group-hover:text-iiyu-red transition-colors"></i>
+                            <span class="text-xs font-mono bg-white/10 px-2 py-1 rounded text-blue-400">TEST</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">Speedtest</h3>
+                        <p class="text-sm text-gray-500">Network Speedtest [500Mbit Limit]</p>
+                    </a>
+
+                    <div class="bg-gradient-to-br from-iiyu-red/20 to-black border border-iiyu-red/30 rounded-lg p-6">
+                        <h3 class="text-lg font-bold text-iiyu-red mb-2">Stress Grad</h3>
+                        <p class="text-xs text-gray-400 font-mono mb-4">Soviel zu tun</p>
+                        <div class="h-1 w-full bg-gray-800 rounded overflow-hidden">
+                            <div class="h-full bg-iiyu-red w-3/4"></div>
+                        </div>
+                        <p class="text-right text-xs text-iiyu-red mt-1">Load: 75%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completed Projects / Analysis -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0c] hover:border-iiyu-red/50 transition-all duration-300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="data/computer.jpg" alt="Server Network" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60 group-hover:opacity-100">
+                        <div class="absolute top-4 right-4 bg-black/80 px-3 py-1 rounded text-xs font-mono text-iiyu-red border border-iiyu-red/30">
+                            ONGOING
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-iiyu-red transition-colors">Selfhost</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Vom normalen PC Alltag gelangweilt entschied ich mich einen Abstecher in kompliziertere Gebiete vorzunehmen. Dort blieb ich bis jetzt hängen. Momentan beläuft sich die Gesamtarchitektur der "Server-Farm" auf 5 CPUs, 2 GPUs & ca. 60TB an Speicher.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#networking</span>
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#security</span>
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#optimization</span>
+                        </div>
+                    </div>
+                </div>
+				
+                <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0c] hover:border-iiyu-red/50 transition-all duration-300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="data/sewing.jpg" alt="Server Network" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60 group-hover:opacity-100">
+                        <div class="absolute top-4 right-4 bg-black/80 px-3 py-1 rounded text-xs font-mono text-iiyu-red border border-iiyu-red/30">
+                            ONGOING
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-iiyu-red transition-colors">Cosplay</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            Um das Verarbeiten von Stoff, Leder und mehr zu trainieren kam ich auf die Idee es mit Cosplay-Erstellung zu probieren. Momentan steckt es aber noch in den Kinderschuhen.
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#handywork</span>
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#fun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0c] hover:border-iiyu-red/50 transition-all duration-300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="data/4chan.jpg" alt="Custom Loop Build" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60 group-hover:opacity-100">
+                        <div class="absolute top-4 right-4 bg-black/80 px-3 py-1 rounded text-xs font-mono text-iiyu-red border border-iiyu-red/30">
+                            ONGOING
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-iiyu-red transition-colors">Chanalysis</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                            [4chan Analyse]
+                        </p>
+                        <div class="flex gap-2">
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#software</span>
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#web</span>
+                            <span class="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-500">#Csharp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="border-t border-white/10 bg-black pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h2 class="text-6xl font-title font-thin mb-6">Let's<br><span class="text-iiyu-red">Connect.</span></h2>
+                    <p class="text-gray-400 max-w-sm">
+                        "Spend your time wisely."<br>
+                        Offen für Kollaborationen, Fragen und nette Unterhaltungen.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                            <i data-lucide="message-square" class="text-iiyu-red"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-mono uppercase">Discord</p>
+                            <p class="text-xl font-medium tracking-wide">iiyu</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                            <i data-lucide="mail" class="text-iiyu-red"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-mono uppercase">Email</p>
+                            <p class="text-xl font-medium tracking-wide">--redacted--</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                            <i data-lucide="phone" class="text-iiyu-red"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-mono uppercase">Phone</p>
+                            <p class="text-xl font-medium tracking-wide">--redacted--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+                <p>&copy; 2025 i i Y u . d e</p>
+                <!-- <div class="flex gap-6 mt-4 md:mt-0 font-mono text-xs">
+                    <a href="#" class="hover:text-white transition-colors">IMPRESSUM</a>
+                    <a href="#" class="hover:text-white transition-colors">DATENSCHUTZ</a>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // ------------------
+        // CONFIGURATION
+        // ------------------
+        const totalImages = 6; 
+
+        // ------------------
+        // AUDIO PLAYER Logic
+        // ------------------
+        const audio = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-btn');
+        const playIcon = document.getElementById('play-icon');
+        const visualizer = document.getElementById('visualizer');
+        const timeDisplay = document.getElementById('time-display');
+        const progressBar = document.getElementById('progress-bar');
+        const progressDot = document.getElementById('progress-dot');
+        const progressContainer = document.getElementById('progress-container');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerText = "PAUSE";
+                visualizer.classList.add('is-playing');
+                playIcon.setAttribute('data-lucide', 'pause-circle');
+                lucide.createIcons();
+            } else {
+                audio.pause();
+                playBtn.innerText = "PLAY";
+                visualizer.classList.remove('is-playing');
+                playIcon.setAttribute('data-lucide', 'play-circle');
+                lucide.createIcons();
+            }
+        }
+
+        function changeTrack(source, title) {
+            // const wasPlaying = !audio.paused; 
+            audio.src = source;
+            if(title) {
+                document.getElementById('track-title').innerText = title;
+            }
+            progressBar.style.width = `0%`;
+            progressDot.style.left = `0%`;
+            timeDisplay.innerText = "00:00 / 00:00";
+            toggleAudio(); 
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const current = audio.currentTime;
+            const duration = audio.duration || 0;
+            const formatTime = (t) => {
+                const min = Math.floor(t / 60);
+                const sec = Math.floor(t % 60);
+                return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+            };
+            timeDisplay.innerText = `${formatTime(current)} / ${formatTime(duration)}`;
+            const percent = (current / duration) * 100;
+            progressBar.style.width = `${percent}%`;
+            progressDot.style.left = `${percent}%`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        });
+
+        // ------------------
+        // GALLERY / SLIDESHOW LOGIC
+        // ------------------
+        
+        // Slideshow Variables
+        let currentSlide = 1;
+        let slideInterval;
+        const maxSlides = 3; 
+
+        function loadImages() {
+            const previewContainer = document.getElementById('photography-preview-grid');
+            const galleryContainer = document.getElementById('gallery-grid');
+
+            // --- 1. SLIDESHOW BEREICH ---
+            let slideshowHTML = `
+                <div class="absolute inset-0 bg-black/20 z-10 pointer-events-none"></div> 
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
+            `;
+
+            for (let i = 1; i <= maxSlides; i++) {
+                if (i > totalImages) break;
+                
+                // Initial Active State: Erstes Bild aktiv, andere versteckt
+                const activeClass = i === 1 ? 'active' : '';
+                
+                slideshowHTML += `
+                    <img src="gallery/${i}t.jpg" 
+                        id="slide-${i}"
+                        class="absolute inset-0 w-full h-full object-cover cursor-zoom-in slideshow-img ${activeClass}" 
+                        alt="Slideshow Image ${i}"
+                        onclick="openLightbox(${i})">
+                `;
+            }
+
+            slideshowHTML += `
+                <div class="absolute bottom-6 right-6 z-20 flex gap-2">
+                    <button onclick="prevSlide()" class="p-3 bg-black/50 text-white hover:bg-iiyu-red hover:text-white transition rounded-full border border-white/10 backdrop-blur-md group">
+                        <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    </button>
+                    <button onclick="nextSlide()" class="p-3 bg-black/50 text-white hover:bg-iiyu-red hover:text-white transition rounded-full border border-white/10 backdrop-blur-md group">
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            `;
+
+            previewContainer.innerHTML = slideshowHTML;
+            startSlideshow();
+
+            // --- 2. GALERIE MODAL ---
+            let galleryHTML = '';
+            for (let i = 1; i <= totalImages; i++) {
+                galleryHTML += `
+                    <div class="group relative rounded-lg overflow-hidden cursor-zoom-in border border-white/10" onclick="openLightbox(${i})">
+                        <img src="gallery/${i}t.jpg"
+                             alt="Gallery Image ${i}"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <p class="text-white font-bold">Image #${i}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            galleryContainer.innerHTML = galleryHTML;
+            
+            lucide.createIcons();
+        }
+
+        // Slideshow Functions - GLITCH VERSION
+        function showSlide(n) {
+            // Finde das aktuell aktive Bild und markiere es als "prev" (bleibt sichtbar)
+            const currentActive = document.querySelector('.slideshow-img.active');
+            if(currentActive) {
+                currentActive.classList.remove('active');
+                currentActive.classList.add('prev');
+                
+                // Nach Animation aufräumen
+                setTimeout(() => {
+                    currentActive.classList.remove('prev');
+                }, 800); // Wartezeit = Animationsdauer
+            }
+
+            // Aktiviere das neue Bild (startet Glitch-Animation)
+            const nextSlide = document.getElementById(`slide-${n}`);
+            if(nextSlide) {
+                nextSlide.classList.add('active');
+            }
+            
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next > maxSlides) next = 1;
+            showSlide(next);
+            resetSlideTimer();
+        }
+
+        function prevSlide() {
+            let prev = currentSlide - 1;
+            if (prev < 1) prev = maxSlides;
+            showSlide(prev);
+            resetSlideTimer();
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); 
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            startSlideshow();
+        }
+
+        // Gallery Modal & Lightbox Logic
+        const galleryModal = document.getElementById('gallery-modal');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        let currentLightboxIndex = 1;
+        let isZoomed = false;
+
+        function openGallery() {
+            galleryModal.classList.remove('hidden');
+            setTimeout(() => {
+                galleryModal.classList.remove('opacity-0');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGallery() {
+            galleryModal.classList.add('opacity-0');
+            setTimeout(() => {
+                galleryModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // --- LIGHTBOX LOGIC ---
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightboxImage();
+            
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+            }, 10);
+            
+            resetZoom();
+        }
+
+        function updateLightboxImage() {
+            lightboxImg.src = `gallery/${currentLightboxIndex}x.jpg`;
+        }
+
+        function nextLightboxImage() {
+            currentLightboxIndex++;
+            if (currentLightboxIndex > totalImages) currentLightboxIndex = 1;
+            
+            resetZoom();
+            updateLightboxImage();
+        }
+
+        function prevLightboxImage() {
+            currentLightboxIndex--;
+            if (currentLightboxIndex < 1) currentLightboxIndex = totalImages;
+            
+            resetZoom();
+            updateLightboxImage();
+        }
+
+        function closeZoom() {
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                resetZoom(); 
+            }, 300);
+        }
+
+        // --- ZOOM & PAN LOGIC ---
+        function toggleZoom(event) {
+            event.stopPropagation(); // Verhindert Bubbling
+            isZoomed = !isZoomed;
+            
+            if (isZoomed) {
+                // Zoom IN
+                lightboxImg.style.transform = "scale(2.5)";
+                lightboxImg.style.cursor = "zoom-out";
+                // Initial Pan Position basierend auf Klick
+                panImage(event);
+            } else {
+                // Zoom OUT
+                resetZoom();
+            }
+        }
+
+        function resetZoom() {
+            isZoomed = false;
+            lightboxImg.style.transform = "scale(1)";
+            lightboxImg.style.transformOrigin = "center center";
+            lightboxImg.style.cursor = "zoom-in";
+        }
+
+        function panImage(event) {
+            if (!isZoomed) return;
+
+            // Berechne Mausposition relativ zum Viewport
+            const x = event.clientX / window.innerWidth * 100;
+            const y = event.clientY / window.innerHeight * 100;
+
+            // Setze Transform-Origin, um Pan-Effekt zu erzeugen
+            lightboxImg.style.transformOrigin = `${x}% ${y}%`;
+        }
+
+        // Keyboard Navigation für Lightbox
+        document.addEventListener('keydown', function(event) {
+            if (lightbox.classList.contains('hidden')) return;
+            
+            if (event.key === "ArrowLeft") {
+                prevLightboxImage();
+            } else if (event.key === "ArrowRight") {
+                nextLightboxImage();
+            } else if (event.key === "Escape") {
+                closeZoom();
+            }
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section > div').forEach((el) => {
+                el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+                observer.observe(el);
+            });
+
+            loadImages();
+        });
+    </script>
+</body>
+</html>
